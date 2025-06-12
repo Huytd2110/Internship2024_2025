@@ -1,6 +1,4 @@
 import requests
-import subprocess
-import tempfile
 from bs4 import BeautifulSoup
 
 def classify_severity(evidence):
@@ -37,28 +35,6 @@ def extract_evidence(response_text):
         return [vuln_div.get_text(separator="\n").strip()]
     return [soup.get_text(separator="\n").strip()]
 
-def run_sqlmap(target_url, param, cookies=None):
-    output_dir = tempfile.mkdtemp(prefix="sqlmap_")
-    base_url = f"{target_url}?{param}=1"
-    cmd = [
-        "sqlmap",
-        "-u", base_url,
-        "--batch",
-        f"--output-dir={output_dir}"
-    ]
-    if cookies:
-        cookie_str = "; ".join([f"{k}={v}" for k, v in cookies.items()])
-        cmd += ["--cookie", cookie_str]
-
-    print(f"[i] Running: {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    return {
-        "tool": "sqlmap",
-        "cmd": " ".join(cmd),
-        "stdout": result.stdout,
-        "stderr": result.stderr
-    }
-
 def is_sqli_success(evd):
     if isinstance(evd, list) and len(evd) > 1:
         return True
@@ -69,88 +45,54 @@ def is_sqli_success(evd):
 def sqli_scan(target_config, engine="script"):
     level = target_config.get("level", "N/A")
     results = []
-    if engine == "script":
-        url = target_config["url"]
-        method = target_config["method"].lower()
-        param = target_config["param"]
-        payloads = load_payloads(target_config)
-        cookies = target_config.get("cookies", None)
-        headers = target_config.get("headers", None)
+    url = target_config["url"]
+    method = target_config["method"].lower()
+    param = target_config["param"]
+    payloads = load_payloads(target_config)
+    cookies = target_config.get("cookies", None)
+    headers = target_config.get("headers", None)
 
-        for idx, payload in enumerate(payloads):
-            params = {param: payload, "Submit": "Submit"}
-            test_case_name = f"SQLi Test #{idx+1}: {payload}"
-            try:
-                if method == "get":
-                    resp = requests.get(url, params=params, cookies=cookies, headers=headers, timeout=10)
-                else:
-                    resp = requests.post(url, data=params, cookies=cookies, headers=headers, timeout=10)
-                evd = extract_evidence(resp.text)
-                is_success = is_sqli_success(evd)
-                if is_success:
-                    sev = classify_severity(evd)
-                else:
-                    sev = "Low"
-                status = "Success" if is_success else "Fail"
-                results.append({
-                    "type": "SQL Injection",
-                    "test_case_name": test_case_name,
-                    "module": "native",
-                    "payload": payload,
-                    "success": is_success,
-                    "status": status,
-                    "level": level,
-                    "severity": sev,
-                    "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
-                    "evidence": evd,
-                    "request_sample": f"{method.upper()} {url}?{param}={payload}&Submit=Submit",
-                    "status_code": resp.status_code,
-                    "response_sample": resp.text[:500]
-                })
-            except Exception as e:
-                results.append({
-                    "type": "SQL Injection",
-                    "test_case_name": test_case_name,
-                    "module": "native",
-                    "payload": payload,
-                    "success": False,
-                    "status": "Error",
-                    "level": level,
-                    "severity": "Low",
-                    "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
-                    "evidence": [f"Exception: {e}"],
-                    "request_sample": f"{method.upper()} {url}?{param}={payload}&Submit=Submit",
-                    "status_code": None,
-                    "response_sample": ""
-                })
-        return results
-
-    elif engine == "sqlmap":
-        url = target_config["url"]
-        param = target_config["param"]
-        cookies = target_config.get("cookies", None)
-        result = run_sqlmap(url, param, cookies)
-        stdout_lower = result["stdout"].lower()
-        is_success = any(key in stdout_lower for key in [
-            "is vulnerable", "appears to be injectable", "parameter is injectable"
-        ])
-        evd = extract_evidence(result["stdout"])
-        sev = classify_severity(evd)
-        status = "Success" if is_success else "Fail"
-        return [{
-            "type": "SQL Injection",
-            "test_case_name": "SQLmap auto-detect",
-            "module": "sqlmap",
-            "payload": "[sqlmap-auto]",
-            "success": is_success,
-            "status": status,
-            "level": level,
-            "severity": sev,
-            "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
-            "evidence": evd,
-            "request_sample": result["cmd"],
-            "status_code": None,
-            "response_sample": result["stdout"][-500:]
-        }]
-    else:
-        raise Exception(f"Engine '{engine}' not supported!")
+    for idx, payload in enumerate(payloads):
+        params = {param: payload, "Submit": "Submit"}
+        test_case_name = f"SQLi Test #{idx+1}: {payload}"
+        try:
+            if method == "get":
+                resp = requests.get(url, params=params, cookies=cookies, headers=headers, timeout=10)
+            else:
+                resp = requests.post(url, data=params, cookies=cookies, headers=headers, timeout=10)
+            evd = extract_evidence(resp.text)
+            is_success = is_sqli_success(evd)
+            sev = classify_severity(evd) if is_success else "Low"
+            status = "Success" if is_success else "Fail"
+            results.append({
+                "type": "SQL Injection",
+                "test_case_name": test_case_name,
+                "module": "native",
+                "payload": payload,
+                "success": is_success,
+                "status": status,
+                "level": level,
+                "severity": sev,
+                "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+                "evidence": evd,
+                "request_sample": f"{method.upper()} {url}?{param}={payload}&Submit=Submit",
+                "status_code": resp.status_code,
+                "response_sample": resp.text[:500]
+            })
+        except Exception as e:
+            results.append({
+                "type": "SQL Injection",
+                "test_case_name": test_case_name,
+                "module": "native",
+                "payload": payload,
+                "success": False,
+                "status": "Error",
+                "level": level,
+                "severity": "Low",
+                "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+                "evidence": [f"Exception: {e}"],
+                "request_sample": f"{method.upper()} {url}?{param}={payload}&Submit=Submit",
+                "status_code": None,
+                "response_sample": ""
+            })
+    return results

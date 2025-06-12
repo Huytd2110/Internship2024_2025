@@ -30,9 +30,4 @@ if __name__ == "__main__":
     target = config["sqli_dvwa"]
 
     results_script, time_script = run_and_report("script", target, target_name="DVWA")
-    results_sqlmap, time_sqlmap = run_and_report("sqlmap", target, target_name="DVWA")
-
-    with open("output/sqli_benchmark.txt", "w") as f:
-        f.write(f"Script engine time: {time_script:.2f} seconds\n")
-        f.write(f"SQLmap engine time: {time_sqlmap:.2f} seconds\n")
 
