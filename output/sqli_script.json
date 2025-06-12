@@ -1,5 +1,5 @@
 {
-  "scan_date": "2025-06-12T06:29:42.829494Z",
+  "scan_date": "2025-06-12T08:04:43.678302Z",
   "target": "DVWA",
   "vulnerabilities": [
     {
@@ -87,8 +87,5 @@
     "total_vulnerabilities": 4,
     "successful_exploits": 3,
     "risk_level": "Critical"
-  },
-  "recommendations": [
-    "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input."
-  ]
+  }
 }
