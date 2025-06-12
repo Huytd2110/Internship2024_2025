@@ -1,0 +1,2 @@
+Script engine time: 0.03 seconds
+SQLmap engine time: 1.65 seconds

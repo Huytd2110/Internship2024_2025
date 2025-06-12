@@ -1,0 +1,13 @@
+{
+  "sqli_dvwa": {
+    "url": "http://localhost/vulnerabilities/sqli/",
+    "method": "GET",
+    "param": "id",
+    "payloads_file": "payloads/sqli.txt",
+    "cookies": {
+      "PHPSESSID": "1fgot79gju6seho1cc9qvj75c2",
+      "security": "low"
+    },
+    "success_indicator": "First name:"
+  }
+}
