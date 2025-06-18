@@ -5,9 +5,34 @@
     "param": "id",
     "payloads_file": "payloads/sqli.txt",
     "cookies": {
-      "PHPSESSID": "1fgot79gju6seho1cc9qvj75c2",
+      "PHPSESSID": "79359g2kude1mcad330guft7f3",
       "security": "low"
     },
     "success_indicator": "First name:"
+  },
+
+  "xss_dvwa_reflected": {
+    "url": "http://localhost/vulnerabilities/xss_r/",
+    "method": "GET",
+    "param": "name",
+    "payloads_file": "payloads/xss.txt",
+    "cookies": {
+      "PHPSESSID": "79359g2kude1mcad330guft7f3",
+      "security": "low"
+    }
+  },
+
+  "xss_dvwa_stored": {
+    "url": "http://localhost/vulnerabilities/xss_s/",
+    "method": "POST",
+    "param": "message",
+    "extra_params": {
+      "name": "autotest"
+    },
+    "payloads_file": "payloads/xss.txt",
+    "cookies": {
+      "PHPSESSID": "79359g2kude1mcad330guft7f3",
+      "security": "low"
+    }
   }
 }

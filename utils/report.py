@@ -7,6 +7,7 @@ import platform
 import sys
 import os
 import subprocess
+from collections import defaultdict
 
 def generate_full_report(scan_results, target_name="Unknown"):
     total = len(scan_results)
@@ -109,12 +110,12 @@ REFERENCES = [
     "OWASP Testing Guide: https://owasp.org/www-project-web-security-testing-guide/"
 ]
 
-# Màu sắc theo severity
+# Severity colors for PDF
 SEVERITY_COLOR = {
-    "Critical": (255, 80, 80),    # Đỏ nhạt
-    "High":     (255, 165, 70),   # Cam
-    "Medium":   (140, 220, 255),  # Xanh biển nhạt
-    "Low":      (220, 220, 220)   # Xám nhạt
+    "Critical": (255, 80, 80),    # Light Red
+    "High":     (255, 165, 70),   # Orange
+    "Medium":   (140, 220, 255),  # Light Blue
+    "Low":      (220, 220, 220)   # Light Gray
 }
 
 def draw_dashed_line(pdf):
@@ -155,31 +156,39 @@ def save_report_markdown(report, filename="output/full_report.md"):
         f.write(f"- Risk Level: **{summary['risk_level']}**\n\n")
         f.write("\n---\n")
 
-        f.write("## Test Cases Table\n\n")
-        f.write("| # | Payload | Status | Severity |\n")
-        f.write("|---|---------|--------|----------|\n")
-        for i, v in enumerate(report["vulnerabilities"]):
-            f.write(
-                f"| {i+1} | `{v.get('payload','N/A')}` | {v.get('status','')} | "
-                f"{v.get('severity','')} |\n"
-            )
-        f.write("\n---\n")
+        # Group by vulnerability type (module)
+        module_groups = defaultdict(list)
+        for v in report["vulnerabilities"]:
+            module_type = v.get("type", "Other")
+            module_groups[module_type].append(v)
 
-        f.write("## Evidence Details\n\n")
-        for i, v in enumerate(report["vulnerabilities"]):
-            severity = v.get("severity", "Low")
-            f.write(f"**Severity:** `{severity}`\n")
-            f.write(f"### [{i+1}] Payload: `{v.get('payload','N/A')}`\n")
-            evidence = v.get('evidence', [])
-            if isinstance(evidence, list):
-                evidence_block = "\n\n".join(evidence)
-            elif isinstance(evidence, str):
-                evidence_block = evidence
-            else:
-                evidence_block = str(evidence)
-            f.write(f"```\n{evidence_block}\n```\n\n")
+        for module_type, vulns in module_groups.items():
+            f.write(f"\n## {module_type} Test Cases\n\n")
+            f.write("| # | Payload | Status | Severity |\n")
+            f.write("|---|---------|--------|----------|\n")
+            for i, v in enumerate(vulns):
+                f.write(
+                    f"| {i+1} | `{v.get('payload','N/A')}` | {v.get('status','')} | "
+                    f"{v.get('severity','')} |\n"
+                )
+            f.write("\n---\n")
+
+            f.write(f"### {module_type} Evidence Details\n\n")
+            for i, v in enumerate(vulns):
+                severity = v.get("severity", "Low")
+                f.write(f"**Severity:** `{severity}`\n")
+                f.write(f"#### Payload: `{v.get('payload','N/A')}`\n")
+                evidence = v.get('evidence', [])
+                if isinstance(evidence, list):
+                    evidence_block = "\n\n".join(evidence)
+                elif isinstance(evidence, str):
+                    evidence_block = evidence
+                else:
+                    evidence_block = str(evidence)
+                f.write(f"```\n{evidence_block}\n```\n\n")
             f.write("---\n")
 
+        # Extracted Users (SQLi)
         all_users = []
         for v in report["vulnerabilities"]:
             if "union select" in v.get("payload", "").lower():
@@ -237,48 +246,57 @@ def save_report_pdf(report, filename="output/full_report.pdf"):
     pdf.cell(0, 8, f"Risk Level: {summary['risk_level']}", 0, 1)
     draw_dashed_line(pdf)
 
-    pdf.set_font("Arial", 'B', 13)
-    pdf.cell(0, 10, "Test Cases Table", 0, 1)
-    pdf.set_font("Arial", size=9)
-    pdf.cell(8, 8, "#", 1)
-    pdf.cell(100, 8, "Payload", 1)
-    pdf.cell(22, 8, "Status", 1)
-    pdf.cell(22, 8, "Severity", 1)
-    pdf.ln()
-    for i, v in enumerate(report["vulnerabilities"]):
-        pdf.set_text_color(0,0,0)
-        pdf.cell(8, 8, str(i+1), 1)
-        pdf.cell(100, 8, normalize_pdf_text(v.get("payload","")), 1)
-        pdf.cell(22, 8, normalize_pdf_text(v.get("status","")), 1)
-        pdf.cell(22, 8, normalize_pdf_text(v.get("severity","")), 1)
-        pdf.ln()
-    pdf.set_text_color(0,0,0)
-    draw_dashed_line(pdf)
+    # Group by vulnerability type (module)
+    module_groups = defaultdict(list)
+    for v in report["vulnerabilities"]:
+        module_type = v.get("type", "Other")
+        module_groups[module_type].append(v)
 
-    pdf.set_font("Arial", 'B', 12)
-    pdf.cell(0, 10, "Evidence Details", 0, 1)
-    pdf.set_font("Arial", size=10)
-    for i, v in enumerate(report["vulnerabilities"]):
-        severity = v.get("severity", "Low")
-        color = SEVERITY_COLOR.get(severity, (220,220,220))
-        pdf.set_fill_color(*color)
-        pdf.set_text_color(30,30,30)
-        pdf.set_font("Arial", 'B', 11)
-        pdf.cell(0, 8, f"  Severity: {severity}", 0, 1, 'L', True)
+    for module_type, vulns in module_groups.items():
+        pdf.set_font("Arial", 'B', 13)
+        pdf.cell(0, 10, f"{module_type} Test Cases", 0, 1)
+        pdf.set_font("Arial", size=9)
+        pdf.cell(8, 8, "#", 1)
+        pdf.cell(80, 8, "Payload", 1)
+        pdf.cell(22, 8, "Status", 1)
+        pdf.cell(22, 8, "Severity", 1)
+        pdf.ln()
+        for i, v in enumerate(vulns):
+            pdf.set_text_color(0,0,0)
+            pdf.cell(8, 8, str(i+1), 1)
+            pdf.cell(80, 8, normalize_pdf_text(v.get("payload","")), 1)
+            pdf.cell(22, 8, normalize_pdf_text(v.get("status","")), 1)
+            pdf.cell(22, 8, normalize_pdf_text(v.get("severity","")), 1)
+            pdf.ln()
         pdf.set_text_color(0,0,0)
-        pdf.set_font("Arial", 'B', 10)
-        pdf.cell(0, 8, normalize_pdf_text(f"[{i+1}] Payload: {v.get('payload','N/A')}"), 0, 1)
-        pdf.set_font("Arial", size=10)
-        evidence = v.get('evidence', [])
-        if isinstance(evidence, list):
-            evidence_block = "\n\n".join(evidence)
-        elif isinstance(evidence, str):
-            evidence_block = evidence
-        else:
-            evidence_block = str(evidence)
-        pdf.multi_cell(0, 6, normalize_pdf_text(evidence_block))
         draw_dashed_line(pdf)
 
+        # Evidence details for this module
+        pdf.set_font("Arial", 'B', 12)
+        pdf.cell(0, 10, f"{module_type} Evidence Details", 0, 1)
+        pdf.set_font("Arial", size=10)
+        for i, v in enumerate(vulns):
+            severity = v.get("severity", "Low")
+            color = SEVERITY_COLOR.get(severity, (220,220,220))
+            pdf.set_fill_color(*color)
+            pdf.set_text_color(30,30,30)
+            pdf.set_font("Arial", 'B', 11)
+            pdf.cell(0, 8, f"  Severity: {severity}", 0, 1, 'L', True)
+            pdf.set_text_color(0,0,0)
+            pdf.set_font("Arial", 'B', 10)
+            pdf.cell(0, 8, normalize_pdf_text(f"[{i+1}] Payload: {v.get('payload','N/A')}"), 0, 1)
+            pdf.set_font("Arial", size=10)
+            evidence = v.get('evidence', [])
+            if isinstance(evidence, list):
+                evidence_block = "\n\n".join(evidence)
+            elif isinstance(evidence, str):
+                evidence_block = evidence
+            else:
+                evidence_block = str(evidence)
+            pdf.multi_cell(0, 6, normalize_pdf_text(evidence_block))
+            draw_dashed_line(pdf)
+
+    # Extracted Users (SQLi)
     all_users = []
     for v in report["vulnerabilities"]:
         if "union select" in v.get("payload", "").lower():
