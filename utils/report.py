@@ -2,7 +2,6 @@ import json
 from fpdf import FPDF
 from datetime import datetime
 import unicodedata
-import re
 import platform
 import sys
 import os
@@ -73,19 +72,6 @@ def normalize_pdf_text(s):
     s = unicodedata.normalize('NFKD', s).encode('latin-1', 'ignore').decode('latin-1')
     return s
 
-def parse_users_from_evidence(evidence):
-    users = []
-    if isinstance(evidence, list):
-        for user_block in evidence:
-            username = password = ""
-            m1 = re.search(r"First name:\s*(.+)", user_block, re.IGNORECASE)
-            if m1: username = m1.group(1).strip()
-            m2 = re.search(r"Surname:\s*(.+)", user_block, re.IGNORECASE)
-            if m2: password = m2.group(1).strip()
-            if username or password:
-                users.append({"username": username, "password": password})
-    return users
-
 METHODOLOGY = [
     "Automated Python script loads payloads from file, sends HTTP requests, extracts evidence with BeautifulSoup4.",
     "Auto-classifies results, exports as PDF/Markdown/JSON.",
@@ -110,7 +96,6 @@ REFERENCES = [
     "OWASP Testing Guide: https://owasp.org/www-project-web-security-testing-guide/"
 ]
 
-# Severity colors for PDF
 SEVERITY_COLOR = {
     "Critical": (255, 80, 80),    # Light Red
     "High":     (255, 165, 70),   # Orange
@@ -187,21 +172,6 @@ def save_report_markdown(report, filename="output/full_report.md"):
                     evidence_block = str(evidence)
                 f.write(f"```\n{evidence_block}\n```\n\n")
             f.write("---\n")
-
-        # Extracted Users (SQLi)
-        all_users = []
-        for v in report["vulnerabilities"]:
-            if "union select" in v.get("payload", "").lower():
-                ev = v.get('evidence', [])
-                users = parse_users_from_evidence(ev)
-                all_users.extend(users)
-        if all_users:
-            f.write("## Extracted Users\n\n")
-            f.write("| # | Username | Password/Hash |\n")
-            f.write("|---|----------|---------------|\n")
-            for i, user in enumerate(all_users):
-                f.write(f"| {i+1} | {user['username']} | {user['password']} |\n")
-            f.write("\n---\n")
 
         f.write("## Recommendations\n")
         for r in DETAILED_RECOMMENDATIONS:
@@ -295,29 +265,6 @@ def save_report_pdf(report, filename="output/full_report.pdf"):
                 evidence_block = str(evidence)
             pdf.multi_cell(0, 6, normalize_pdf_text(evidence_block))
             draw_dashed_line(pdf)
-
-    # Extracted Users (SQLi)
-    all_users = []
-    for v in report["vulnerabilities"]:
-        if "union select" in v.get("payload", "").lower():
-            ev = v.get('evidence', [])
-            users = parse_users_from_evidence(ev)
-            all_users.extend(users)
-    if all_users:
-        pdf.set_font("Arial", 'B', 12)
-        pdf.cell(0, 10, "Extracted Users", 0, 1)
-        pdf.set_font("Arial", size=10)
-        pdf.cell(10, 8, "#", 1)
-        pdf.cell(40, 8, "Username", 1)
-        pdf.cell(60, 8, "Password/Hash", 1)
-        pdf.ln()
-        for i, user in enumerate(all_users):
-            pdf.cell(10, 8, str(i+1), 1)
-            pdf.cell(40, 8, normalize_pdf_text(user['username']), 1)
-            pdf.cell(60, 8, normalize_pdf_text(user['password']), 1)
-            pdf.ln()
-        pdf.ln(2)
-        draw_dashed_line(pdf)
 
     pdf.set_font("Arial", 'B', 12)
     pdf.cell(0, 10, "Recommendations", 0, 1)

@@ -5,7 +5,7 @@
     "param": "id",
     "payloads_file": "payloads/sqli.txt",
     "cookies": {
-      "PHPSESSID": "79359g2kude1mcad330guft7f3",
+      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
       "security": "low"
     },
     "success_indicator": "First name:"
@@ -17,7 +17,7 @@
     "param": "name",
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "79359g2kude1mcad330guft7f3",
+      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
       "security": "low"
     }
   },
@@ -31,8 +31,17 @@
     },
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "79359g2kude1mcad330guft7f3",
+      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
       "security": "low"
     }
-  }
+  },
+  "idor_juiceshop": {
+    "base_url": "http://localhost:42000/rest/basket/",
+    "method": "GET",
+    "ids": [1,2,3,4,5,6,7,8,9,10],
+    "headers": {
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MjIsInVzZXJuYW1lIjoiIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTEwYWRjMzk0OWJhNTlhYmJlNTZlMDU3ZjIwZjg4M2UiLCJyb2xlIjoiY3VzdG9tZXIiLCJkZWx1eGVUb2tlbiI6IiIsImxhc3RMb2dpbklwIjoiMC4wLjAuMCIsInByb2ZpbGVJbWFnZSI6Ii9hc3NldHMvcHVibGljL2ltYWdlcy91cGxvYWRzL2RlZmF1bHQuc3ZnIiwidG90cFNlY3JldCI6IiIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDI1LTA2LTIxIDA4OjI3OjM4LjQ2NyArMDA6MDAiLCJ1cGRhdGVkQXQiOiIyMDI1LTA2LTIxIDA4OjI3OjM4LjQ2NyArMDA6MDAiLCJkZWxldGVkQXQiOm51bGx9LCJpYXQiOjE3NTA0OTQ0NjB9.Y03oA1ATCud2qYZNphI2mgCRRZhv6C5s7ZQio6EI5klAj1_C6U5NRCXpam6HPUz7JcyH-sFQ-5suDopOmRUw77T5QFrZ4yv5inxmZvOAf4Gw8ANg6jtqC0_vLD-90rgF52H0TGXuko74wcgmP95hDbkPXYm3FzvILy0rOxRjcuk"
+    },
+    "success_indicator": "products"
+ }
 }

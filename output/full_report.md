@@ -1,13 +1,13 @@
 # Automated Web Pentest Report
 
-**Scan Date:** 2025-06-18T04:39:43.716188Z  
-**Target:** DVWA (All modules)
+**Scan Date:** 2025-06-27T01:43:21.660686Z  
+**Target:** Full Automated Web Pentest
 
 ## Test Environment
 
 - **Server OS:** Kali GNU/Linux Rolling
 - **Python Version:** 3.13.3
-- **Scan Date:** 2025-06-18 04:39:43 UTC
+- **Scan Date:** 2025-06-27 01:43:21 UTC
 - **SQLmap Version:** 1.9.4#stable
 - **Target App:** DVWA (Damn Vulnerable Web Application)
 - **Version:** 1.10 *Development*
@@ -27,8 +27,8 @@
 
 ---
 ## Executive Summary
-- Total vulnerabilities tested: 14  
-- Successful exploits: 13  
+- Total vulnerabilities tested: 24  
+- Successful exploits: 19  
 - Risk Level: **Critical**
 
 
@@ -227,15 +227,104 @@ Detected <script> tag in response.
 ```
 
 ---
-## Extracted Users
 
-| # | Username | Password/Hash |
-|---|----------|---------------|
-| 1 | admin | 5f4dcc3b5aa765d61d8327deb882cf99 |
-| 2 | gordonb | e99a18c428cb38d5f260853678922e03 |
-| 3 | 1337 | 8d3533d75ae2c3966d7e0d4fcc69216b |
-| 4 | pablo | 0d107d09f5bbe40cade3de5c71e9e9b7 |
-| 5 | smithy | 5f4dcc3b5aa765d61d8327deb882cf99 |
+## IDOR Test Cases
+
+| # | Payload | Status | Severity |
+|---|---------|--------|----------|
+| 1 | `1` | Success | High |
+| 2 | `2` | Success | High |
+| 3 | `3` | Success | High |
+| 4 | `4` | Success | High |
+| 5 | `5` | Success | High |
+| 6 | `6` | Success | High |
+| 7 | `7` | Fail | Low |
+| 8 | `8` | Fail | Low |
+| 9 | `9` | Fail | Low |
+| 10 | `10` | Fail | Low |
+
+---
+### IDOR Evidence Details
+
+**Severity:** `High`
+#### Payload: `1`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple_juice.jpg","createdAt":"202
+```
+
+**Severity:** `High`
+#### Payload: `2`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
+```
+
+**Severity:** `High`
+#### Payload: `3`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
+```
+
+**Severity:** `High`
+#### Payload: `4`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"r
+```
+
+**Severity:** `High`
+#### Payload: `5`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":5,"coupon":null,"UserId":16,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":3,"name":"Eggfruit Juice (500ml)","description":"Now with even more exotic flavour.","price":8.99,"deluxePrice":8.99,"image":"eggfruit_juice.jp
+```
+
+**Severity:** `High`
+#### Payload: `6`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":6,"coupon":null,"UserId":22,"createdAt":"2025-06-21T08:27:39.619Z","updatedAt":"2025-06-21T08:27:39.619Z","Products":[]}}
+```
+
+**Severity:** `Low`
+#### Payload: `7`
+```
+Status: 200
+
+Response: {"status":"success","data":{}}
+```
+
+**Severity:** `Low`
+#### Payload: `8`
+```
+Status: 200
+
+Response: {"status":"success","data":{}}
+```
+
+**Severity:** `Low`
+#### Payload: `9`
+```
+Status: 200
+
+Response: {"status":"success","data":{}}
+```
+
+**Severity:** `Low`
+#### Payload: `10`
+```
+Status: 200
+
+Response: {"status":"success","data":{}}
+```
 
 ---
 ## Recommendations

@@ -1,6 +1,6 @@
 {
-  "scan_date": "2025-06-18T04:39:43.716188Z",
-  "target": "DVWA (All modules)",
+  "scan_date": "2025-06-27T01:43:21.660686Z",
+  "target": "Full Automated Web Pentest",
   "vulnerabilities": [
     {
       "type": "SQL Injection",
@@ -262,11 +262,181 @@
       "request_sample": "POST http://localhost/vulnerabilities/xss_s/ {'message': '\"><svg onload=alert(\\'xss\\')>', 'Submit': 'Sign Guestbook', 'name': 'autotest'}",
       "status_code": 200,
       "response_sample": "\r\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\r\n\t<head>\r\n\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n\r\n\t\t<title>Vulnerability: Stored Cross Site Scripting (XSS) :: Damn Vulnerable Web Application (DVWA) v1.10 *Development*</title>\r\n\r\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../../dvwa/css/main.css\" />\r\n\r\n\t\t<link rel=\"icon\" type=\"\\image/ico\" href=\".."
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=1",
+      "module": "native",
+      "payload": "1",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"202"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/1",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"2025-06-21T07:47:08.214Z\",\"updatedAt\":\"2025-06-21T07:47:08.214Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":1,\"BasketId\":1,\"id\":1,\"quantity\":2,\"createdAt\":\"2025-06-21T07:47:08.295Z\",\"updatedAt\":\"2025-06-"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=2",
+      "module": "native",
+      "payload": "2",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/2",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-06-21T07:47:08.215Z\",\"updatedAt\":\"2025-06-21T07:47:08.215Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":2,\"id\":4,\"quantity\":2,\"createdAt\":\"2025-06-21T0"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=3",
+      "module": "native",
+      "payload": "3",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/3",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-06-21T07:47:08.215Z\",\"updatedAt\":\"2025-06-21T07:47:08.215Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":3,\"id\":5,\"quantity\":1,\"createdAt\":\"2025-06-21T0"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=4",
+      "module": "native",
+      "payload": "4",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"r"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/4",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-06-21T07:47:08.215Z\",\"updatedAt\":\"2025-06-21T07:47:08.215Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":4,\"id\":6,\"quantity\":2,\"createdAt\":\"2025-06-21T"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=5",
+      "module": "native",
+      "payload": "5",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jp"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/5",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-06-21T07:47:08.280Z\",\"updatedAt\":\"2025-06-21T07:47:08.280Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jpg\",\"createdAt\":\"2025-06-21T07:47:08.214Z\",\"updatedAt\":\"2025-06-21T07:47:08.214Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":3,\"BasketId\":5,\"id\":7,\"quantity\":5,\"createdAt\":\"2025-06-21T07:47:08.295Z\",\"u"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=6",
+      "module": "native",
+      "payload": "6",
+      "success": true,
+      "status": "Success",
+      "severity": "High",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{\"id\":6,\"coupon\":null,\"UserId\":22,\"createdAt\":\"2025-06-21T08:27:39.619Z\",\"updatedAt\":\"2025-06-21T08:27:39.619Z\",\"Products\":[]}}"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/6",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":6,\"coupon\":null,\"UserId\":22,\"createdAt\":\"2025-06-21T08:27:39.619Z\",\"updatedAt\":\"2025-06-21T08:27:39.619Z\",\"Products\":[]}}"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=7",
+      "module": "native",
+      "payload": "7",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{}}"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/7",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=8",
+      "module": "native",
+      "payload": "8",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{}}"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/8",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=9",
+      "module": "native",
+      "payload": "9",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{}}"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/9",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
+    },
+    {
+      "type": "IDOR",
+      "test_case_name": "IDOR basket_id=10",
+      "module": "native",
+      "payload": "10",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
+      "remediation": "Implement strict access control to verify resource ownership before granting access.",
+      "evidence": [
+        "Status: 200",
+        "Response: {\"status\":\"success\",\"data\":{}}"
+      ],
+      "request_sample": "GET http://localhost:42000/rest/basket/10",
+      "status_code": 200,
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
     }
   ],
   "summary": {
-    "total_vulnerabilities": 14,
-    "successful_exploits": 13,
+    "total_vulnerabilities": 24,
+    "successful_exploits": 19,
     "risk_level": "Critical"
   }
 }
