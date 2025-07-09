@@ -1,29 +1,29 @@
 {
   "sqli_dvwa": {
-    "url": "http://localhost/vulnerabilities/sqli/",
+    "url": "http://localhost:8080/vulnerabilities/sqli/",
     "method": "GET",
     "param": "id",
     "payloads_file": "payloads/sqli.txt",
     "cookies": {
-      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
+      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
       "security": "low"
     },
     "success_indicator": "First name:"
   },
 
   "xss_dvwa_reflected": {
-    "url": "http://localhost/vulnerabilities/xss_r/",
+    "url": "http://localhost:8080/vulnerabilities/xss_r/",
     "method": "GET",
     "param": "name",
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
+      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
       "security": "low"
     }
   },
 
   "xss_dvwa_stored": {
-    "url": "http://localhost/vulnerabilities/xss_s/",
+    "url": "http://localhost:8080/vulnerabilities/xss_s/",
     "method": "POST",
     "param": "message",
     "extra_params": {
@@ -31,7 +31,7 @@
     },
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "hr76flifllmhfginjlpupgnae3",
+      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
       "security": "low"
     }
   },

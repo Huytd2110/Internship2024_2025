@@ -1,8 +1,8 @@
 import requests
 
-url = 'http://localhost/vulnerabilities/xss_r/'
+url = 'http://localhost:8080/vulnerabilities/xss_r/'
 cookies = {
-    'PHPSESSID': '1fgot79gju6seho1cc9qvj75c2',
+    'PHPSESSID': 'u6b6d75vrp01r26fgd20040i95',
     'security': 'low'
 }
 

