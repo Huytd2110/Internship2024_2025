@@ -24,4 +24,4 @@ pipeline {
         }
     }
 }
-// Demo auto trigger Jenkins by commit
+// em chao cac thay a
