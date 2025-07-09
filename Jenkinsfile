@@ -24,3 +24,4 @@ pipeline {
         }
     }
 }
+// Demo auto trigger Jenkins by commit
