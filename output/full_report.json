@@ -1,5 +1,5 @@
 {
-  "scan_date": "2025-07-04T00:50:50.886209Z",
+  "scan_date": "2025-07-17T04:48:30.093339Z",
   "target": "Full Automated Web Pentest",
   "vulnerabilities": [
     {
@@ -274,11 +274,11 @@
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"202"
+        "Response: {\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"202"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/1",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":1,\"BasketId\":1,\"id\":1,\"quantity\":2,\"createdAt\":\"2025-07-01T16:50:02.439Z\",\"updatedAt\":\"2025-07-"
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":1,\"coupon\":null,\"UserId\":1,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":1,\"name\":\"Apple Juice (1000ml)\",\"description\":\"The all-time classic.\",\"price\":1.99,\"deluxePrice\":0.99,\"image\":\"apple_juice.jpg\",\"createdAt\":\"2025-07-17T04:01:26.596Z\",\"updatedAt\":\"2025-07-17T04:01:26.596Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":1,\"BasketId\":1,\"id\":1,\"quantity\":2,\"createdAt\":\"2025-07-17T04:01:26.715Z\",\"updatedAt\":\"2025-07-"
     },
     {
       "type": "IDOR",
@@ -291,11 +291,11 @@
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
+        "Response: {\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/2",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":2,\"id\":4,\"quantity\":2,\"createdAt\":\"2025-07-01T1"
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":2,\"coupon\":null,\"UserId\":2,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-17T04:01:26.596Z\",\"updatedAt\":\"2025-07-17T04:01:26.596Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":2,\"id\":4,\"quantity\":2,\"createdAt\":\"2025-07-17T0"
     },
     {
       "type": "IDOR",
@@ -308,11 +308,11 @@
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
+        "Response: {\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"ra"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/3",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":3,\"id\":5,\"quantity\":1,\"createdAt\":\"2025-07-01T1"
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":3,\"coupon\":null,\"UserId\":3,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-17T04:01:26.596Z\",\"updatedAt\":\"2025-07-17T04:01:26.596Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":3,\"id\":5,\"quantity\":1,\"createdAt\":\"2025-07-17T0"
     },
     {
       "type": "IDOR",
@@ -325,11 +325,11 @@
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"r"
+        "Response: {\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"r"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/4",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":4,\"id\":6,\"quantity\":2,\"createdAt\":\"2025-07-01T"
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":4,\"coupon\":null,\"UserId\":11,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":4,\"name\":\"Raspberry Juice (1000ml)\",\"description\":\"Made from blended Raspberry Pi, water and sugar.\",\"price\":4.99,\"deluxePrice\":4.99,\"image\":\"raspberry_juice.jpg\",\"createdAt\":\"2025-07-17T04:01:26.596Z\",\"updatedAt\":\"2025-07-17T04:01:26.596Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":4,\"BasketId\":4,\"id\":6,\"quantity\":2,\"createdAt\":\"2025-07-17T"
     },
     {
       "type": "IDOR",
@@ -342,62 +342,62 @@
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jp"
+        "Response: {\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jp"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/5",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-07-01T16:50:02.422Z\",\"updatedAt\":\"2025-07-01T16:50:02.422Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":3,\"BasketId\":5,\"id\":7,\"quantity\":5,\"createdAt\":\"2025-07-01T16:50:02.440Z\",\"u"
+      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":5,\"coupon\":null,\"UserId\":16,\"createdAt\":\"2025-07-17T04:01:26.697Z\",\"updatedAt\":\"2025-07-17T04:01:26.697Z\",\"Products\":[{\"id\":3,\"name\":\"Eggfruit Juice (500ml)\",\"description\":\"Now with even more exotic flavour.\",\"price\":8.99,\"deluxePrice\":8.99,\"image\":\"eggfruit_juice.jpg\",\"createdAt\":\"2025-07-17T04:01:26.596Z\",\"updatedAt\":\"2025-07-17T04:01:26.596Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":3,\"BasketId\":5,\"id\":7,\"quantity\":5,\"createdAt\":\"2025-07-17T04:01:26.716Z\",\"u"
     },
     {
       "type": "IDOR",
       "test_case_name": "IDOR basket_id=6",
       "module": "native",
       "payload": "6",
-      "success": true,
-      "status": "Success",
-      "severity": "High",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":6,\"coupon\":null,\"UserId\":22,\"createdAt\":\"2025-07-03T17:48:53.227Z\",\"updatedAt\":\"2025-07-03T17:48:53.227Z\",\"Products\":[{\"id\":6,\"name\":\"Banana Juice (1000ml)\",\"description\":\"Monkeys love it the most.\",\"price\":1.99,\"deluxePrice\":1.99,\"image\":\"banana_juice.jpg\",\"createdA"
+        "Response: {\"status\":\"success\",\"data\":{}}"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/6",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":6,\"coupon\":null,\"UserId\":22,\"createdAt\":\"2025-07-03T17:48:53.227Z\",\"updatedAt\":\"2025-07-03T17:48:53.227Z\",\"Products\":[{\"id\":6,\"name\":\"Banana Juice (1000ml)\",\"description\":\"Monkeys love it the most.\",\"price\":1.99,\"deluxePrice\":1.99,\"image\":\"banana_juice.jpg\",\"createdAt\":\"2025-07-01T16:50:02.326Z\",\"updatedAt\":\"2025-07-01T16:50:02.326Z\",\"deletedAt\":null,\"BasketItem\":{\"ProductId\":6,\"BasketId\":6,\"id\":9,\"quantity\":1,\"createdAt\":\"2025-07-03T17:49:19.982Z\",\"updatedAt\":\"2"
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
     },
     {
       "type": "IDOR",
       "test_case_name": "IDOR basket_id=7",
       "module": "native",
       "payload": "7",
-      "success": true,
-      "status": "Success",
-      "severity": "High",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":7,\"coupon\":null,\"UserId\":23,\"createdAt\":\"2025-07-03T17:50:53.072Z\",\"updatedAt\":\"2025-07-03T17:50:53.072Z\",\"Products\":[{\"id\":42,\"name\":\"Best Juice Shop Salesman Artwork\",\"description\":\"Unique digital painting depicting Stan, our most qualified and almost profitable sa"
+        "Response: {\"status\":\"success\",\"data\":{}}"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/7",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":7,\"coupon\":null,\"UserId\":23,\"createdAt\":\"2025-07-03T17:50:53.072Z\",\"updatedAt\":\"2025-07-03T17:50:53.072Z\",\"Products\":[{\"id\":42,\"name\":\"Best Juice Shop Salesman Artwork\",\"description\":\"Unique digital painting depicting Stan, our most qualified and almost profitable salesman. He made a succesful carreer in selling used ships, coffins, krypts, crosses, real estate, life insurance, restaurant supplies, voodoo enhanced asbestos and courtroom souvenirs before <em>final"
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
     },
     {
       "type": "IDOR",
       "test_case_name": "IDOR basket_id=8",
       "module": "native",
       "payload": "8",
-      "success": true,
-      "status": "Success",
-      "severity": "High",
+      "success": false,
+      "status": "Fail",
+      "severity": "Low",
       "remediation": "Implement strict access control to verify resource ownership before granting access.",
       "evidence": [
         "Status: 200",
-        "Response: {\"status\":\"success\",\"data\":{\"id\":8,\"coupon\":null,\"UserId\":24,\"createdAt\":\"2025-07-03T17:59:23.545Z\",\"updatedAt\":\"2025-07-03T17:59:23.545Z\",\"Products\":[{\"id\":42,\"name\":\"Best Juice Shop Salesman Artwork\",\"description\":\"Unique digital painting depicting Stan, our most qualified and almost profitable sa"
+        "Response: {\"status\":\"success\",\"data\":{}}"
       ],
       "request_sample": "GET http://localhost:42000/rest/basket/8",
       "status_code": 200,
-      "response_sample": "{\"status\":\"success\",\"data\":{\"id\":8,\"coupon\":null,\"UserId\":24,\"createdAt\":\"2025-07-03T17:59:23.545Z\",\"updatedAt\":\"2025-07-03T17:59:23.545Z\",\"Products\":[{\"id\":42,\"name\":\"Best Juice Shop Salesman Artwork\",\"description\":\"Unique digital painting depicting Stan, our most qualified and almost profitable salesman. He made a succesful carreer in selling used ships, coffins, krypts, crosses, real estate, life insurance, restaurant supplies, voodoo enhanced asbestos and courtroom souvenirs before <em>final"
+      "response_sample": "{\"status\":\"success\",\"data\":{}}"
     },
     {
       "type": "IDOR",
@@ -436,7 +436,7 @@
   ],
   "summary": {
     "total_vulnerabilities": 24,
-    "successful_exploits": 21,
+    "successful_exploits": 18,
     "risk_level": "Critical"
   }
 }

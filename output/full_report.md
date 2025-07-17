@@ -1,13 +1,13 @@
 # Automated Web Pentest Report
 
-*Scan Date:* 2025-07-04T00:50:50.886209Z  
+*Scan Date:* 2025-07-17T04:48:30.093339Z  
 *Target:* Full Automated Web Pentest
 
 ## Test Environment: DVWA
 
 - *Server OS:* Kali GNU/Linux Rolling
 - *Python Version:* 3.13.3
-- *Scan Date:* 2025-07-04 00:50:50 UTC
+- *Scan Date:* 2025-07-17 04:48:30 UTC
 - *SQLmap Version:* 1.9.4#stable
 - *Target App:* DVWA (Damn Vulnerable Web Application)
 - *Version:* 1.10 Development
@@ -230,9 +230,9 @@ Detected <script> tag in response.
 | 3 | 3 | Success | High |
 | 4 | 4 | Success | High |
 | 5 | 5 | Success | High |
-| 6 | 6 | Success | High |
-| 7 | 7 | Success | High |
-| 8 | 8 | Success | High |
+| 6 | 6 | Fail | Low |
+| 7 | 7 | Fail | Low |
+| 8 | 8 | Fail | Low |
 | 9 | 9 | Fail | Low |
 | 10 | 10 | Fail | Low |
 
@@ -244,7 +244,7 @@ Detected <script> tag in response.
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple_juice.jpg","createdAt":"202
+Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt":"2025-07-17T04:01:26.697Z","updatedAt":"2025-07-17T04:01:26.697Z","Products":[{"id":1,"name":"Apple Juice (1000ml)","description":"The all-time classic.","price":1.99,"deluxePrice":0.99,"image":"apple_juice.jpg","createdAt":"202
 ```
 
 *Severity:* `High`
@@ -252,7 +252,7 @@ Response: {"status":"success","data":{"id":1,"coupon":null,"UserId":1,"createdAt
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
+Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt":"2025-07-17T04:01:26.697Z","updatedAt":"2025-07-17T04:01:26.697Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
 ```
 
 *Severity:* `High`
@@ -260,7 +260,7 @@ Response: {"status":"success","data":{"id":2,"coupon":null,"UserId":2,"createdAt
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
+Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt":"2025-07-17T04:01:26.697Z","updatedAt":"2025-07-17T04:01:26.697Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"ra
 ```
 
 *Severity:* `High`
@@ -268,7 +268,7 @@ Response: {"status":"success","data":{"id":3,"coupon":null,"UserId":3,"createdAt
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"r
+Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdAt":"2025-07-17T04:01:26.697Z","updatedAt":"2025-07-17T04:01:26.697Z","Products":[{"id":4,"name":"Raspberry Juice (1000ml)","description":"Made from blended Raspberry Pi, water and sugar.","price":4.99,"deluxePrice":4.99,"image":"r
 ```
 
 *Severity:* `High`
@@ -276,31 +276,31 @@ Response: {"status":"success","data":{"id":4,"coupon":null,"UserId":11,"createdA
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":5,"coupon":null,"UserId":16,"createdAt":"2025-07-01T16:50:02.422Z","updatedAt":"2025-07-01T16:50:02.422Z","Products":[{"id":3,"name":"Eggfruit Juice (500ml)","description":"Now with even more exotic flavour.","price":8.99,"deluxePrice":8.99,"image":"eggfruit_juice.jp
+Response: {"status":"success","data":{"id":5,"coupon":null,"UserId":16,"createdAt":"2025-07-17T04:01:26.697Z","updatedAt":"2025-07-17T04:01:26.697Z","Products":[{"id":3,"name":"Eggfruit Juice (500ml)","description":"Now with even more exotic flavour.","price":8.99,"deluxePrice":8.99,"image":"eggfruit_juice.jp
 ```
 
-*Severity:* `High`
+*Severity:* `Low`
 ##### Payload: `6`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":6,"coupon":null,"UserId":22,"createdAt":"2025-07-03T17:48:53.227Z","updatedAt":"2025-07-03T17:48:53.227Z","Products":[{"id":6,"name":"Banana Juice (1000ml)","description":"Monkeys love it the most.","price":1.99,"deluxePrice":1.99,"image":"banana_juice.jpg","createdA
+Response: {"status":"success","data":{}}
 ```
 
-*Severity:* `High`
+*Severity:* `Low`
 ##### Payload: `7`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":7,"coupon":null,"UserId":23,"createdAt":"2025-07-03T17:50:53.072Z","updatedAt":"2025-07-03T17:50:53.072Z","Products":[{"id":42,"name":"Best Juice Shop Salesman Artwork","description":"Unique digital painting depicting Stan, our most qualified and almost profitable sa
+Response: {"status":"success","data":{}}
 ```
 
-*Severity:* `High`
+*Severity:* `Low`
 ##### Payload: `8`
 ```
 Status: 200
 
-Response: {"status":"success","data":{"id":8,"coupon":null,"UserId":24,"createdAt":"2025-07-03T17:59:23.545Z","updatedAt":"2025-07-03T17:59:23.545Z","Products":[{"id":42,"name":"Best Juice Shop Salesman Artwork","description":"Unique digital painting depicting Stan, our most qualified and almost profitable sa
+Response: {"status":"success","data":{}}
 ```
 
 *Severity:* `Low`

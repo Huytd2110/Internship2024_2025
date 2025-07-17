@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git branch: 'main', url: 'https://github.com/Huytd2110/Internship2024_2025.git'
             }
         }
         stage('Set up Python') {
