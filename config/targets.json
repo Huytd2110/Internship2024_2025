@@ -5,7 +5,7 @@
     "param": "id",
     "payloads_file": "payloads/sqli.txt",
     "cookies": {
-      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
+      "PHPSESSID": "qh0gau3haad1i7g4pk60s0qpt3",
       "security": "low"
     },
     "success_indicator": "First name:"
@@ -17,7 +17,7 @@
     "param": "name",
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
+      "PHPSESSID": "qh0gau3haad1i7g4pk60s0qpt3",
       "security": "low"
     }
   },
@@ -31,7 +31,7 @@
     },
     "payloads_file": "payloads/xss.txt",
     "cookies": {
-      "PHPSESSID": "u6b6d75vrp01r26fgd20040i95",
+      "PHPSESSID": "qh0gau3haad1i7g4pk60s0qpt3",
       "security": "low"
     }
   },
@@ -40,7 +40,7 @@
     "method": "GET",
     "ids": [1,2,3,4,5,6,7,8,9,10],
     "headers": {
-        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MjIsInVzZXJuYW1lIjoiIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTEwYWRjMzk0OWJhNTlhYmJlNTZlMDU3ZjIwZjg4M2UiLCJyb2xlIjoiY3VzdG9tZXIiLCJkZWx1eGVUb2tlbiI6IiIsImxhc3RMb2dpbklwIjoiMC4wLjAuMCIsInByb2ZpbGVJbWFnZSI6Ii9hc3NldHMvcHVibGljL2ltYWdlcy91cGxvYWRzL2RlZmF1bHQuc3ZnIiwidG90cFNlY3JldCI6IiIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDI1LTA2LTIxIDA4OjI3OjM4LjQ2NyArMDA6MDAiLCJ1cGRhdGVkQXQiOiIyMDI1LTA2LTIxIDA4OjI3OjM4LjQ2NyArMDA6MDAiLCJkZWxldGVkQXQiOm51bGx9LCJpYXQiOjE3NTA0OTQ0NjB9.Y03oA1ATCud2qYZNphI2mgCRRZhv6C5s7ZQio6EI5klAj1_C6U5NRCXpam6HPUz7JcyH-sFQ-5suDopOmRUw77T5QFrZ4yv5inxmZvOAf4Gw8ANg6jtqC0_vLD-90rgF52H0TGXuko74wcgmP95hDbkPXYm3FzvILy0rOxRjcuk"
+        "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MjMsInVzZXJuYW1lIjoiIiwiZW1haWwiOiJiQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTEwYWRjMzk0OWJhNTlhYmJlNTZlMDU3ZjIwZjg4M2UiLCJyb2xlIjoiY3VzdG9tZXIiLCJkZWx1eGVUb2tlbiI6IiIsImxhc3RMb2dpbklwIjoiMC4wLjAuMCIsInByb2ZpbGVJbWFnZSI6Ii9hc3NldHMvcHVibGljL2ltYWdlcy91cGxvYWRzL2RlZmF1bHQuc3ZnIiwidG90cFNlY3JldCI6IiIsImlzQWN0aXZlIjp0cnVlLCJjcmVhdGVkQXQiOiIyMDI1LTA3LTAzIDE3OjUwOjQ5LjI2OSArMDA6MDAiLCJ1cGRhdGVkQXQiOiIyMDI1LTA3LTAzIDE3OjUwOjQ5LjI2OSArMDA6MDAiLCJkZWxldGVkQXQiOm51bGx9LCJpYXQiOjE3NTE1NjUwNTN9.fGvpMmlH90vCmMxfQN86HercjGkiYRo97D9GWJgwTqoO8_lXbZNOdyZ2ECzM57nCpsW14Q2wD9LeRUluVp-S5YrgFWSrjMfowd3oG2351BdFrAg8LuMv20c8Wjx_wQ9NLU4gLV4W9hMmRLV47yV7nScKgkbgRPpre6GDaC2ZnLo"
     },
     "success_indicator": "products"
  }
